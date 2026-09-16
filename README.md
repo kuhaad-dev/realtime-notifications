@@ -21,6 +21,7 @@ A scalable, fault-tolerant **Event-Driven Notification Service** built with Nest
 - **Resilient BullMQ Job Queues**: Configured with exponential backoff retry policies (`attempts: 5`, initial delay: 2s) and Dead-Letter Queue (DLQ) retention for failed deliveries.
 - **Horizontal WebSocket Scaling**: Uses `@socket.io/redis-adapter` to distribute room broadcasting across multiple Node.js cluster processes and Kubernetes pods, allowing clients connected to different server instances to receive real-time events without dropped packets.
 - **Persistent Delivery Audit Trail**: PostgreSQL 16 schema capturing comprehensive event logs (`NotificationLog`, `WebhookEvent`, `DeviceSubscription`) with composite indexing for sub-millisecond retrieval.
+- **Interactive Developer Console & Playground**: Embedded dark-mode testing dashboard at `/console` allowing engineers to test live Socket.IO emissions, HMAC verification, and idempotency deduplication with 1 click.
 
 ---
 
@@ -93,6 +94,7 @@ sequenceDiagram
 | `POST` | `/notifications/dispatch` | Manually dispatch notification | `Idempotency-Key` (optional) |
 | `GET` | `/notifications/logs` | Fetch delivery audit logs | Query: `recipientId` |
 | `GET` | `/notifications/metrics` | Real-time WebSocket connection count | None |
+| `GET` | `/console` | Live Interactive Test Console & Event Playground | None |
 
 Interactive OpenAPI documentation is hosted at `http://localhost:3001/api/docs`.
 

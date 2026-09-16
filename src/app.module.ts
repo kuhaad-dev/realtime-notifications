@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { IdempotencyModule } from './modules/idempotency/idempotency.module';
 import { WebSocketsModule } from './modules/websockets/websockets.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
+import { ConsoleModule } from './modules/console/console.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
     IdempotencyModule,
     WebSocketsModule,
     NotificationsModule,
+    ConsoleModule,
   ],
 })
 export class AppModule {}
