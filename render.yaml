@@ -1,0 +1,46 @@
+services:
+  # NestJS Realtime Notification Service
+  - type: web
+    name: realtime-notifications
+    runtime: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: NODE_ENV
+        value: production
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: notifications-postgres
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: notifications-postgres
+          property: port
+      - key: DB_USERNAME
+        fromDatabase:
+          name: notifications-postgres
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: notifications-postgres
+          property: password
+      - key: DB_DATABASE
+        fromDatabase:
+          name: notifications-postgres
+          property: database
+      - key: DB_SYNCHRONIZE
+        value: "true"
+      - key: REDIS_HOST
+        value: localhost
+      - key: REDIS_PORT
+        value: 6379
+
+databases:
+  - name: notifications-postgres
+    plan: free
+    databaseName: notifications_db
+    user: postgres
